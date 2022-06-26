@@ -3,26 +3,28 @@
     <el-form ref="LoginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
-        <span class="icon">icon</span>
+        <svg-icon className="svg-language" icon="language"></svg-icon>
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
           <el-icon>
-             <avatar />
+             <svg-icon icon="user"></svg-icon>
           </el-icon>
         </span>
         <el-input v-model="loginForm.username" />
       </el-form-item>
       <el-form-item prop="password">
-        <el-input :type="inputType" v-model="loginForm.password">
-          <template #prefix>
-            <el-icon class="el-input__icon"><search /></el-icon>
-          </template>
-          <template #suffix>
-            <el-icon v-if="inputType === 'password'" @click="handllePassWordStatus" class="el-input__icon"><Hide /></el-icon>
-            <el-icon v-else @click="handllePassWordStatus" class="el-input__icon"><View /></el-icon>
-          </template>
-        </el-input>
+        <span class="svg-container">
+          <el-icon>
+             <svg-icon icon="password"></svg-icon>
+          </el-icon>
+        </span>
+        <el-input :type="inputType" v-model="loginForm.password"></el-input>
+        <span class="svg-pwd" @click="handllePassWordStatus">
+          <el-icon>
+            <svg-icon :icon="passwordIconStatus"></svg-icon>
+          </el-icon>
+        </span>
       </el-form-item>
       <el-button class="login-button" type="primary" @click="handleLoginSubmit(LoginForm)">登录</el-button>
     </el-form>
@@ -30,9 +32,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+
+import { reactive, ref, computed } from 'vue'
 import { validatePassword } from './rule'
-import { Avatar, Search, View, Hide } from '@element-plus/icons-vue'
 
 const inputType = ref('password')
 
@@ -56,6 +58,10 @@ const loginRules = reactive({
       validator: validatePassword
     }
   ]
+})
+
+const passwordIconStatus = computed(() => {
+  return inputType.value === 'password' ? 'eye' : 'eye-open'
 })
 
 const handleLoginSubmit = async (formName) => {
@@ -104,6 +110,16 @@ $cursor: #fff;
         vertical-align: middle;
         display: inline-block;
       }
+
+      .svg-pwd{
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        font-size: 16px;
+        color: $dark_gray;
+        cursor: pointer;
+        user-select: none;
+      }
     }
 
     ::v-deep .el-input {
@@ -138,12 +154,15 @@ $cursor: #fff;
         font-weight: bold;
         margin-bottom : 40px;
       }
-      .icon{
-        position: absolute;
-        top : 0;
-        right : 0;
-        color :$light_gray;
-        font-size : 22px;
+      ::v-deep .svg-language{
+          position: absolute;
+          top: 4px;
+          right: 0;
+          background-color: #fff;
+          font-size: 22px;
+          padding: 4px;
+          border-radius: 4px;
+          cursor: pointer;
       }
     }
 
@@ -153,4 +172,5 @@ $cursor: #fff;
     }
   }
 }
+
 </style>
