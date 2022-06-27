@@ -12,4 +12,6 @@ import installIcons from './icons/index.js'
 const app = createApp(App)
 installIcons(app)
 
+console.log(process.env.VUE_APP_BASE_API)
+
 app.use(store).use(router).use(ElementPlus).mount('#app')
