@@ -32,10 +32,13 @@
 </template>
 
 <script setup>
-import UserApi from '../../api/user'
+import util from '../../utils/util'
 import { reactive, ref, computed } from 'vue'
+import { useStore } from 'vuex'
 import { validatePassword } from './rule'
 import md5 from 'md5'
+
+const store = useStore()
 
 const inputType = ref('password')
 const LoginForm = ref()
@@ -73,10 +76,10 @@ const handleLoginSubmit = async () => {
   if (!LoginForm.value) return
   await LoginForm.value.validate(async valid => {
     if (valid) {
-      alert('登录')
-      loginForm.password = md5(loginForm.password)
-      const response = await UserApi.login(loginForm)
-      console.log(response)
+      const newLoginForm = util.deepCopy(loginForm)
+      newLoginForm.password = md5(newLoginForm.password)
+
+      store.dispatch('user/login', newLoginForm)
     }
   })
 }
