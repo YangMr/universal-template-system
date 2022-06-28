@@ -21,7 +21,7 @@ module.exports = defineConfig({
       }
     }
   },
-  lintOnSave: true,
+  lintOnSave: false,
   chainWebpack(config) {
     // 设置 svg-sprite-loader
     config.module
