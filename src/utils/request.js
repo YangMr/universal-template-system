@@ -32,6 +32,8 @@ import md5 from 'md5'
 
 import loading from './loading'
 
+import { ElMessage } from 'element-plus'
+
 // 创建axios实例对象
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -62,14 +64,22 @@ service.interceptors.response.use((response) => {
   // 关闭loading加载
   loading.close()
 
-  // TODO token过期状态
+  const { success, data, message } = response.data
 
   // TODO 全局响应处理
+  if (success) {
+    return data
+  } else {
+    ElMessage.error(message)
+    return Promise.reject(new Error(message))
+  }
 
-  return response
+  // TODO token过期状态
 }, (error) => {
   // 关闭loading加载
   loading.close()
+  // 响应失败进行信息提示
+  ElMessage.error(error.message)
   return Promise.reject(error)
 })
 

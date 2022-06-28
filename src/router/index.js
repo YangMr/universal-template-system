@@ -6,6 +6,10 @@ const publicRoutes = [
     path: '/login',
     name: 'login',
     component: () => import('../views/login')
+  },
+  {
+    path: '/',
+    component: () => import('../layout')
   }
 ]
 
