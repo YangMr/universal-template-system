@@ -1,13 +1,10 @@
 <template>
-  <template v-if="props.item.children && props.item.children.length > 0">
-    <ul>
-
-      <li class="two" v-for="(mItem) in props.item.children" :key="mItem.id">
-        {{mItem.name}}
-       <Item :item="props.item"></Item>
-      </li>
-    </ul>
-  </template>
+  <ul>
+    <li>
+      {{props.item.name}}
+      <Item v-for="(v,i) in props.item.children" :key="i" :item = "v" />
+    </li>
+  </ul>
 </template>
 
 <script setup >

@@ -1,16 +1,12 @@
 <template>
   <div>
-    <ul>
-      <li class="one" v-for="(item) in array" :key="item.id">{{item.name}}
-        <app-item :item="item"></app-item>
-      </li>
-    </ul>
+    <Item v-for="(item,i) in array" :key="i" :item = "item" />
   </div>
 </template>
 
 <script setup>
 import { reactive } from 'vue'
-import AppItem from './Item'
+import Item from './Item'
 
 const data = [
   {
@@ -23,21 +19,21 @@ const data = [
         children: [
           {
             id: 111,
-            name: 'html'
-            // children: [
-            //   {
-            //     id: 11113,
-            //     name: 'p'
-            //   },
-            //   {
-            //     id: 11114,
-            //     name: 'h1'
-            //   },
-            //   {
-            //     id: 11115,
-            //     name: 'ul'
-            //   }
-            // ]
+            name: 'html',
+            children: [
+              {
+                id: 11113,
+                name: 'p'
+              },
+              {
+                id: 11114,
+                name: 'h1'
+              },
+              {
+                id: 11115,
+                name: 'ul'
+              }
+            ]
           },
           {
             id: 112,
