@@ -70,18 +70,24 @@ service.interceptors.response.use((response) => {
   if (success) {
     return data
   } else {
-    ElMessage.error(message)
+    _showError(message)
     return Promise.reject(new Error(message))
   }
 
-  // TODO token过期状态
+  // TODO token过期状态  401 描述信息  无感知登录 无感知刷新
 }, (error) => {
   // 关闭loading加载
   loading.close()
   // 响应失败进行信息提示
-  ElMessage.error(error.message)
+  _showError(error.message)
   return Promise.reject(error)
 })
+
+// 响应提示信息
+const _showError = (message) => {
+  const info = message || '发生未知错误'
+  ElMessage.error(info)
+}
 
 // 统一了传参处理
 const request = (options) => {
