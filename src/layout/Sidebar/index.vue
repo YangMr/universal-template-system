@@ -1,14 +1,14 @@
 <template>
   <div>
-    <Item v-for="(item,i) in array" :key="i" :item = "item" />
+    <menu-tree :tree="data"></menu-tree>
   </div>
 </template>
 
 <script setup>
 import { reactive } from 'vue'
-import Item from './Item'
+import MenuTree from './MenuTree.vue'
 
-const data = [
+const array = [
   {
     id: 1,
     name: 'IT互联网',
@@ -81,7 +81,7 @@ const data = [
   }
 ]
 
-const array = reactive(data)
+const data = reactive(array)
 
 </script>
 
