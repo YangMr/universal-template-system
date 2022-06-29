@@ -7,27 +7,7 @@
         unique-opened
         router
       >
-
-        <template v-for="(item,index) in menuList" :key="index">
-          <template v-if="item && !item.children">
-            <el-menu-item :index="item.path">
-              <el-icon>
-                <svg-icon :icon="item.meta.icon"></svg-icon>
-              </el-icon>
-              {{item.meta.title}}
-            </el-menu-item>
-          </template>
-          <template v-if="item && item.children && item.children.length > 0">
-            <el-sub-menu :index="index">
-              <template #title>
-                <el-icon>
-                  <svg-icon :icon="item.meta.icon"></svg-icon>
-                </el-icon>
-                <span>{{item.meta.title}}</span>
-              </template>
-            </el-sub-menu>
-          </template>
-        </template>
+        <sidebar-menu-item v-for="(item) in menuList" :key="item" :menuList="item"></sidebar-menu-item>
         <!-- <el-menu-item index="/profile">
           <el-icon>
             <svg-icon icon="personnel"></svg-icon>
@@ -99,6 +79,11 @@
  * 有children     el-sub-menu
  */
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { filterMenuData } from '../../utils/menu'
+import SidebarMenuItem from './SidebarMenuItem'
+
+const router = useRouter()
 const data = [
   {
     path: '/profile',
@@ -106,7 +91,8 @@ const data = [
     meta: {
       title: '个人中心',
       icon: 'personnel'
-    }
+    },
+    children: []
   },
   {
     path: '/user',
@@ -123,9 +109,7 @@ const data = [
           title: '员工管理',
           icon: 'personnel-manage'
         },
-        children: [
-
-        ]
+        children: []
       },
       {
         path: '/user/role',
@@ -133,10 +117,7 @@ const data = [
         meta: {
           title: '角色列表',
           icon: 'role'
-        },
-        children: [
-
-        ]
+        }
       },
       {
         path: '/user/permission',
@@ -144,10 +125,7 @@ const data = [
         meta: {
           title: '权限列表',
           icon: 'permission'
-        },
-        children: [
-
-        ]
+        }
       }
     ]
   },
@@ -168,10 +146,7 @@ const data = [
         meta: {
           title: '文章排名',
           icon: 'article-ranking'
-        },
-        children: [
-
-        ]
+        }
       },
       {
         path: '/article/create',
@@ -179,15 +154,15 @@ const data = [
         meta: {
           title: '文章创建',
           icon: 'article-create'
-        },
-        children: [
-
-        ]
+        }
       }
     ]
   }
 ]
-const menuList = reactive(data)
+
+console.log('routes=>', router.getRoutes())
+
+const menuList = reactive(filterMenuData(data))
 </script>
 
 <style scoped lang='scss'>
