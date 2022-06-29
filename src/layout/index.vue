@@ -2,8 +2,9 @@
   <div class="app-wrapper">
     <sidebar class="sidebar-container"></sidebar>
     <div class="main-container">
-      <div class="fiexed-header">
+      <div class="fixed-header">
         <navbar></navbar>
+        <tags-view></tags-view>
       </div>
       <app-main></app-main>
     </div>
@@ -14,6 +15,7 @@
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 import AppMain from './AppMain'
+import TagsView from '../components/TagsView'
 </script>
 
 <style lang="scss" scoped>
