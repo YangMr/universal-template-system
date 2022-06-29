@@ -19,7 +19,7 @@ const publicRoutes = [
         component: () => import('../views/profile'),
         meta: {
           title: '个人中心',
-          icon: 'el-icon-user'
+          icon: 'personnel'
         }
       },
       {
@@ -81,7 +81,7 @@ const privateRoutes = [
         component: () => import('../views/permission-list'),
         meta: {
           title: '权限列表',
-          icon: 'role'
+          icon: 'permission'
         }
       },
       {
@@ -121,7 +121,7 @@ const privateRoutes = [
         component: () => import('../views/article-create'),
         meta: {
           title: '创建文章',
-          icon: 'article-ranking'
+          icon: 'article-create'
         }
       },
       {
