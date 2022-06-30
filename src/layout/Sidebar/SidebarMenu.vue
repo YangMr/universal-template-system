@@ -2,7 +2,7 @@
   <el-menu
         active-text-color="#fff"
         background-color="#304156"
-        default-active=""
+        :default-active="$route.path"
         text-color="#bfcbd9"
         unique-opened
         router
