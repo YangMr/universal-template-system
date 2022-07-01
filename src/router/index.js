@@ -1,11 +1,26 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Layout from '../layout'
+
+// import Layout from '../layout'
+
+/**
+ *
+ *  1. 自定义所有私有权限路由表
+ *
+ *  2. 默认只加载公有路由表
+ *
+ *
+ */
+import ArticleRanking from './modules/ArticleRanking'
+import UserManage from './modules/UserManage'
+import RoleList from './modules/RoleList'
+import PermissionList from './modules/PermissionList'
+import ArticleCreate from './modules/ArticleCreate'
 
 // 一级路由 最外层的路由 /login /user /article /
 // 要想拿到所有的字路由, 就必须先拿所有一级的路由的children (所有的子数据在一级的children里面)
 
 // 公有路由表
-const publicRoutes = [
+export const publicRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -26,15 +41,6 @@ const publicRoutes = [
         }
       },
       {
-        path: '/chart',
-        name: 'chart',
-        component: () => import('../views/chart'),
-        meta: {
-          title: '数据可视化',
-          icon: 'chart'
-        }
-      },
-      {
         path: '/404',
         name: '404',
         component: () => import('../views/error-page/404')
@@ -49,7 +55,22 @@ const publicRoutes = [
 ]
 
 // 私有路由表
-const privateRoutes = [
+export const privateRoutes = [
+  UserManage,
+  RoleList,
+  PermissionList,
+  ArticleRanking,
+  ArticleCreate
+]
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: publicRoutes
+})
+
+export default router
+
+/*
   {
     path: '/user',
     name: 'user',
@@ -134,11 +155,4 @@ const privateRoutes = [
       }
     ]
   }
-]
-
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes: [...publicRoutes, ...privateRoutes]
-})
-
-export default router
+  */

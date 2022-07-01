@@ -8,60 +8,6 @@
         router
       >
         <sidebar-menu-item v-for="(item) in menuList" :key="item" :menuList="item"></sidebar-menu-item>
-        <!-- <el-menu-item index="/profile">
-          <el-icon>
-            <svg-icon icon="personnel"></svg-icon>
-          </el-icon>
-          <span>个人中心</span>
-        </el-menu-item>
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon>
-              <svg-icon icon="personnel"></svg-icon>
-            </el-icon>
-            <span>用户</span>
-          </template>
-          <el-menu-item index="/user/manage">
-            <el-icon>
-              <svg-icon icon="personnel-manage"></svg-icon>
-            </el-icon>
-            <span> 员工管理</span>
-          </el-menu-item>
-          <el-menu-item index="/user/role">
-            <el-icon>
-              <svg-icon icon="role"></svg-icon>
-            </el-icon>
-            <span>角色列表</span>
-          </el-menu-item>
-          <el-menu-item index="/user/permission">
-            <el-icon>
-              <svg-icon icon="permission"></svg-icon>
-            </el-icon>
-            <span>权限列表</span>
-          </el-menu-item>
-        </el-sub-menu>
-
-        <el-sub-menu index="2">
-          <template #title>
-            <el-icon>
-              <svg-icon icon="article"></svg-icon>
-            </el-icon>
-            <span>文章</span>
-          </template>
-          <el-menu-item index="/article/ranking">
-            <el-icon>
-              <svg-icon icon="article-ranking"></svg-icon>
-            </el-icon>
-            <span> 文章排名</span>
-          </el-menu-item>
-          <el-menu-item index="/article/create">
-            <el-icon>
-              <svg-icon icon="article-create"></svg-icon>
-            </el-icon>
-            <span>文章创建</span>
-          </el-menu-item>
-        </el-sub-menu>
-        -->
   </el-menu>
 </template>
 
