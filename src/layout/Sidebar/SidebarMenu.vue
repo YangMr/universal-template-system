@@ -135,5 +135,7 @@ const menuList = computed(() => {
 </script>
 
 <style scoped lang='scss'>
-
+.el-menu{
+  border-right : none;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="tags-view-container">
-    <ul>
+    <ul class="tags-view-list">
       <li class="tags" @click="handleSelectTag(item.path)" :class="{active : $route.path === item.path}" v-for="(item,index) in tagsView" :key="item">
         {{item.title}}
         <span @click.stop="handleCloseTag(index)">
@@ -21,11 +21,13 @@ const router = useRouter()
 const route = useRoute()
 
 watch(() => router.currentRoute.value.path, (toPath) => {
-  const obj = {
-    title: route.meta.title,
-    path: route.path
+  if (route.meta && route.meta.title && route.path) {
+    const obj = {
+      title: route.meta.title,
+      path: route.path
+    }
+    store.commit('tagsview/setTagsView', obj)
   }
-  store.commit('tagsview/setTagsView', obj)
 }, { immediate: true, deep: true })
 
 const tagsView = computed(() => {
@@ -63,6 +65,10 @@ const handleCloseTag = (index) => {
     font-size: 12px;
     margin-left: 5px;
     margin-top: 4px;
+  }
+
+  .tags-view-list{
+    overflow-x: auto;
   }
 
   .tags.active{
