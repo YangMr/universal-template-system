@@ -10,7 +10,7 @@ export default {
   },
   children: [
     {
-      path: '/article/ranking',
+      path: '/article/create',
       component: () => import('../../views/article-create'),
       meta: {
         title: '文章创建',
